@@ -18,7 +18,7 @@ public abstract class Gladiator {
     protected List<Skill> skillList;
 
     protected int Expirience;
-    protected int Level;
+    public int Level; //TODO: Remove public for tests
 
     private String gladiatorName;
 
@@ -117,4 +117,16 @@ public abstract class Gladiator {
 
     abstract protected int getBaseHealthPoints();
 
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    public void setHealthPoints(int healthPoints) {
+        this.healthPoints = healthPoints;
+    }
+
+    final public void setBaseHealthPoints()
+    {
+        this.healthPoints = this.getBaseHealthPoints();
+    }
 }

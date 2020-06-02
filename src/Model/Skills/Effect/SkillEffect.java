@@ -1,7 +1,6 @@
 package Model.Skills.Effect;
 
 import Model.Gladiator.GladiatorStatistic;
-import Model.Skills.Skill;
 
 
 
@@ -15,22 +14,31 @@ public class SkillEffect {
 
     boolean isSelfDamage; //Is damage dealt is assigned to caster (for example some berserker skills)
 
-    public SkillEffect(int damage, int heal, int statisticBoost, GladiatorStatistic gladiatorStatistic, boolean isSelfDamage )
+    String sourceSkillName;
+
+    public SkillEffect()
+    {
+
+    }
+
+    public SkillEffect(int damage, int heal, int statisticBoost, GladiatorStatistic gladiatorStatistic, boolean isSelfDamage, String sourceSkillName )
     {
         this.damage = damage;
         this.heal = heal;
         this.statisticBoost = statisticBoost;
         this.gladiatorStatistic = gladiatorStatistic;
         this.isSelfDamage = isSelfDamage;
+        this.sourceSkillName = sourceSkillName;
     }
 
-    public SkillEffect(int damage, int heal, int statisticBoost, GladiatorStatistic gladiatorStatistic)
+    public SkillEffect(int damage, int heal, int statisticBoost, GladiatorStatistic gladiatorStatistic, String sourceSkillName)
     {
         this.damage = damage;
         this.heal = heal;
         this.statisticBoost = statisticBoost;
         this.gladiatorStatistic = gladiatorStatistic;
         this.isSelfDamage = false;
+        this.sourceSkillName = sourceSkillName;
     }
 
     final public int getDamage()
@@ -57,8 +65,6 @@ public class SkillEffect {
     {
         return this.isSelfDamage;
     }
-
-
 
 
 }
