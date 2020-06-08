@@ -1,36 +1,29 @@
-package Model.Skills.Common;
+package Model.Skills.Physical;
 
 import Model.Gladiator.Gladiator;
 import Model.Gladiator.GladiatorStatistic;
 import Model.Skills.Effect.SkillEffect;
 
-public class Punch extends CommonSkill {
-
-    public Punch(Gladiator owner)
+public class FrenzyStrike extends PhysicalSkill {
+    public FrenzyStrike(Gladiator owner)
     {
         super(owner, GladiatorStatistic.Strength);
     }
 
+
     @Override
     public String getName() {
-        return "Punch";
+        return "Frenzy Strike";
     }
 
     @Override
     public String getDescription() {
-        return "Punch enemy";
-    }
-
-    @Override
-    public SkillEffect useSkill(Gladiator target)
-    {
-        SkillEffect skillEffect = super.useSkill(target);
-        return skillEffect;
+        return "Strike enemy and get warriors frenzy (boost Strength stat)";
     }
 
     @Override
     protected int getSkillDamage() {
-        return 10 + 2 * owner.getGladiatorStatisticsClass().getStatistic(statisticMultiper);
+        return 20 + owner.getGladiatorStatisticsClass().getStatistic(statisticMultiper);
     }
 
     @Override
@@ -40,12 +33,12 @@ public class Punch extends CommonSkill {
 
     @Override
     protected int getStatisticBoost() {
-        return 0;
+        return 15;
     }
 
     @Override
     protected GladiatorStatistic getBoostedStatistics() {
-        return GladiatorStatistic.None;
+        return GladiatorStatistic.Strength;
     }
 
     @Override
@@ -53,5 +46,10 @@ public class Punch extends CommonSkill {
         return false;
     }
 
-
+    @Override
+    public SkillEffect useSkill(Gladiator target)
+    {
+        SkillEffect skillEffect = super.useSkill(target);
+        return skillEffect;
+    }
 }

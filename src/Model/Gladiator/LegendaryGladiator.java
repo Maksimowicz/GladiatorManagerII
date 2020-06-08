@@ -11,7 +11,7 @@ public class LegendaryGladiator extends Gladiator{
 
     protected int getBaseHealthPoints()
     {
-        return (int)(10*1.5*getLevel());
+        return (int)(50*1.5*getLevel());
     }
     public int punch()
     {

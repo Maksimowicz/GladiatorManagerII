@@ -2,6 +2,7 @@ package Model.Classes.Mages;
 
 import Model.Classes.GladiatorClassSubtypes;
 import Model.Classes.Mage;
+import Model.Gladiator.GladiatorStatisticsClass;
 
 public class Curser extends Mage {
     public String getName()
@@ -12,5 +13,11 @@ public class Curser extends Mage {
     @Override
     public GladiatorClassSubtypes getGladiatorClassSubtype() {
         return MageSubtypes.constructCurser();
+    }
+
+    @Override
+    public GladiatorStatisticsClass getBaseStatistics() {
+        GladiatorStatisticsClass gladiatorStatisticsClass = new GladiatorStatisticsClass(5,15, 23,17);
+        return gladiatorStatisticsClass;
     }
 }

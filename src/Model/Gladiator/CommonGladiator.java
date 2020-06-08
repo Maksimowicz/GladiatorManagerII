@@ -12,7 +12,7 @@ public class CommonGladiator extends Gladiator {
 
     protected int getBaseHealthPoints()
     {
-        return 10*1*getLevel();
+        return 50*1*getLevel();
     }
 
     public int punch()

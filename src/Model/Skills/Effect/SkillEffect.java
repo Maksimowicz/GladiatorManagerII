@@ -1,5 +1,6 @@
 package Model.Skills.Effect;
 
+import Model.Gladiator.Gladiator;
 import Model.Gladiator.GladiatorStatistic;
 
 
@@ -16,12 +17,15 @@ public class SkillEffect {
 
     String sourceSkillName;
 
+    Gladiator target;
+    Gladiator owner;
+
     public SkillEffect()
     {
 
     }
 
-    public SkillEffect(int damage, int heal, int statisticBoost, GladiatorStatistic gladiatorStatistic, boolean isSelfDamage, String sourceSkillName )
+    public SkillEffect(Gladiator owner, int damage, int heal, int statisticBoost, GladiatorStatistic gladiatorStatistic, boolean isSelfDamage, String sourceSkillName, Gladiator target )
     {
         this.damage = damage;
         this.heal = heal;
@@ -29,9 +33,11 @@ public class SkillEffect {
         this.gladiatorStatistic = gladiatorStatistic;
         this.isSelfDamage = isSelfDamage;
         this.sourceSkillName = sourceSkillName;
+        this.target = target;
+        this.owner = owner;
     }
 
-    public SkillEffect(int damage, int heal, int statisticBoost, GladiatorStatistic gladiatorStatistic, String sourceSkillName)
+    public SkillEffect(Gladiator owner, int damage, int heal, int statisticBoost, GladiatorStatistic gladiatorStatistic, String sourceSkillName, Gladiator target)
     {
         this.damage = damage;
         this.heal = heal;
@@ -39,6 +45,8 @@ public class SkillEffect {
         this.gladiatorStatistic = gladiatorStatistic;
         this.isSelfDamage = false;
         this.sourceSkillName = sourceSkillName;
+        this.target = target;
+        this.owner = owner;
     }
 
     final public int getDamage()
@@ -66,5 +74,14 @@ public class SkillEffect {
         return this.isSelfDamage;
     }
 
+    final public Gladiator getTarget()
+    {
+        return this.target;
+    }
+
+    final public Gladiator getOwner()
+    {
+        return this.owner;
+    }
 
 }

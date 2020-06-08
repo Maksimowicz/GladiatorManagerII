@@ -12,7 +12,7 @@ public class RareGladiator extends Gladiator {
 
     protected int getBaseHealthPoints()
     {
-        return (int)(10*1.25*getLevel());
+        return (int)(50*1.25*getLevel());
     }
 
     public int punch()

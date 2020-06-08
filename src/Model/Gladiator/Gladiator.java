@@ -2,6 +2,7 @@ package Model.Gladiator;
 
 import Model.Classes.GladiatorClass;
 import Model.Races.Race;
+import Model.Skills.Effect.SkillEffect;
 import Model.Skills.Skill;
 import Model.Weapons.Weapon;
 
@@ -23,6 +24,9 @@ public abstract class Gladiator {
     private String gladiatorName;
 
     private int healthPoints;
+    private int baseHealthPoints;
+
+    private GladiatorStatisticsClass gladiatorStatisticsClass;
 
     public Gladiator(Race gladiatorRace, GladiatorClass gladiatorClass, String gladiatorName)
     {
@@ -32,6 +36,7 @@ public abstract class Gladiator {
         this.gladiatorName = gladiatorName;
 
         this.healthPoints = this.getBaseHealthPoints();
+        this.gladiatorStatisticsClass = gladiatorClass.getBaseStatistics();
     }
 
 
@@ -88,6 +93,38 @@ public abstract class Gladiator {
         return false;
     }
 
+    final public boolean canLearnMoreSkills()
+    {
+        return skillList.size() >= 4 ? false : true;
+    }
+
+    final public boolean replaceSkill(Skill skill, int skillToReplace)
+    {
+        if((skillToReplace < 0 || skillToReplace >3) || skillToReplace > this.skillList.size()-1)
+        {
+            return false; //No more than 4 skills or not enough skills
+        }
+
+        if(skill.canBeLearned(this.gladiatorClass, this.gladiatorRace))
+        {
+            skillList.set(skillToReplace, skill);
+            return true;
+        }
+
+        return false;
+    }
+
+    final public SkillEffect useSkill(int skillIndex, Gladiator target)
+    {
+        if(skillIndex > skillList.size()-1 || skillIndex < 0)
+        {
+            return null;
+        }
+
+        return skillList.get(skillIndex).useSkill(target);
+    }
+
+
     final public Race getGladiatorRaceType()
     {
         return this.gladiatorRace;
@@ -127,6 +164,26 @@ public abstract class Gladiator {
 
     final public void setBaseHealthPoints()
     {
-        this.healthPoints = this.getBaseHealthPoints();
+        this.baseHealthPoints = this.getBaseHealthPoints();
     }
+
+    final public void removeHealthPoints(int healthPointsToRemove)
+    {
+        healthPoints -= Math.abs(healthPointsToRemove);
+    }
+
+    final public void addHealthPoints(int healthPointsToAdd)
+    {
+        healthPoints += Math.abs(healthPointsToAdd);
+    }
+
+    public GladiatorStatisticsClass getGladiatorStatisticsClass() {
+        return gladiatorStatisticsClass;
+    }
+
+    public void prepareForFight()
+    {
+        this.healthPoints = baseHealthPoints;
+    }
+
 }

@@ -8,9 +8,9 @@ import Model.Skills.Effect.SkillEffect;
 
 public abstract class Skill {
 
-    Gladiator owner; //Caller of the spell
+    final protected Gladiator owner; //Caller of the spell
 
-    GladiatorStatistic statisticMultiper;
+    final protected GladiatorStatistic statisticMultiper;
 
     //Cretion of specific use of specific skill skill
     protected Skill(Gladiator owner, GladiatorStatistic statisticMultiper)
@@ -24,6 +24,17 @@ public abstract class Skill {
     abstract public boolean canBeLearned(GladiatorClass gladiatorClass, Race race); //Indicated who can use skill
     abstract public String getWhoCanLearn(); //Gets string version of classes that can learn skill
     abstract public String getDescription(); //Gets description of the skill
-    abstract public SkillEffect useSkill(Gladiator target); //uses skill
+
+    public SkillEffect useSkill(Gladiator target) //uses skill
+    {
+        SkillEffect skillEffect = new SkillEffect(this.owner, this.getSkillDamage(), this.getSkillHeal(), this.getStatisticBoost(), this.getBoostedStatistics(), this.getIsSelfDamage(), this.getName(), target);
+        return skillEffect;
+    }
+
+    abstract protected int getSkillDamage();
+    abstract protected int getSkillHeal();
+    abstract protected int getStatisticBoost();
+    abstract protected GladiatorStatistic getBoostedStatistics();
+    abstract protected boolean getIsSelfDamage();
 
 }
