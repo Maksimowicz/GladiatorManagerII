@@ -20,4 +20,10 @@ public class Assassin extends Rogue {
         GladiatorStatisticsClass gladiatorStatisticsClass = new GladiatorStatisticsClass(23,23, 5,9);
         return gladiatorStatisticsClass;
     }
+
+    @Override
+    public GladiatorStatisticsClass getLevelUpStats() {
+        return new GladiatorStatisticsClass(6,6,0,0);
+    }
+
 }

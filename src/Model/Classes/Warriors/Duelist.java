@@ -20,4 +20,10 @@ public class Duelist extends Warrior {
         GladiatorStatisticsClass gladiatorStatisticsClass = new GladiatorStatisticsClass(23,15, 10,12);
         return gladiatorStatisticsClass;
     }
+
+    @Override
+    public GladiatorStatisticsClass getLevelUpStats() {
+        return new GladiatorStatisticsClass(6 , 4, 1, 1);
+    }
+
 }

@@ -20,4 +20,11 @@ public class Berserker extends Warrior {
         GladiatorStatisticsClass gladiatorStatisticsClass = new GladiatorStatisticsClass(23,12, 10,15);
         return gladiatorStatisticsClass;
     }
+
+    @Override
+    public GladiatorStatisticsClass getLevelUpStats() {
+        return new GladiatorStatisticsClass(6,3, 1, 2);
+    }
+
+
 }

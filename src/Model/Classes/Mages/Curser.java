@@ -20,4 +20,10 @@ public class Curser extends Mage {
         GladiatorStatisticsClass gladiatorStatisticsClass = new GladiatorStatisticsClass(5,15, 23,17);
         return gladiatorStatisticsClass;
     }
+
+    @Override
+    public GladiatorStatisticsClass getLevelUpStats() {
+        return new GladiatorStatisticsClass(1,2,6, 3);
+    }
+
 }

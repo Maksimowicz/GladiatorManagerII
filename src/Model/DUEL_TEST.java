@@ -273,7 +273,7 @@ public class DUEL_TEST {
         RedSkill2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gladiatorArena.getLastEffects().add(redTeam.get(0).useSkill(0, blueTeam.get(0)));
+                gladiatorArena.getLastEffects().add(redTeam.get(0).useSkill(1, blueTeam.get(0)));
                 enableRedSkills(false);
                 roundConclusion();
             }
@@ -282,7 +282,7 @@ public class DUEL_TEST {
         RedSkill3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gladiatorArena.getLastEffects().add(redTeam.get(0).useSkill(0, blueTeam.get(0)));
+                gladiatorArena.getLastEffects().add(redTeam.get(0).useSkill(2, blueTeam.get(0)));
                 enableRedSkills(false);
                 roundConclusion();
             }
@@ -291,7 +291,7 @@ public class DUEL_TEST {
         RedSkill4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gladiatorArena.getLastEffects().add(redTeam.get(0).useSkill(0, blueTeam.get(0)));
+                gladiatorArena.getLastEffects().add(redTeam.get(0).useSkill(3, blueTeam.get(0)));
                 enableRedSkills(false);
                 roundConclusion();
             }

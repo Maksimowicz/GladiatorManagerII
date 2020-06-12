@@ -23,4 +23,6 @@ public class MageSubtypes extends GladiatorClassSubtypes {
         return new MageSubtypes("Illusionist");
     }
 
+
+
 }

@@ -52,13 +52,13 @@ public final class GladiatorStatisticsClass {
         switch(gladiatorStatistic)
         {
             case Strength:
-                return this.getStrength();
+                return this.getStrength() + strengthModifier;
             case Agility:
-                return this.getAgility();
+                return this.getAgility() + agilityModifier;
             case Intelligence:
-                return this.getIntelligence();
+                return this.getIntelligence() + intelligenceModifier;
             case Defence:
-                return this.getDefence();
+                return this.getDefence() + defenceModifier;
             case None:
                 return -1;
         }
@@ -150,6 +150,15 @@ public final class GladiatorStatisticsClass {
         this.agilityModifier = 0;
         this.intelligenceModifier = 0;
         this.defenceModifier = 0;
+    }
+
+
+    public void addLevelUp(GladiatorStatisticsClass statsToAdd)
+    {
+        this.strength += statsToAdd.strength;
+        this.agility += statsToAdd.agility;
+        this.defence += statsToAdd.defence;
+        this.intelligence += statsToAdd.intelligence;
     }
 
 

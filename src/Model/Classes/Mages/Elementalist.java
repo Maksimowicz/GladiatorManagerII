@@ -21,4 +21,10 @@ public class Elementalist extends Mage {
         return gladiatorStatisticsClass;
     }
 
+    @Override
+    public GladiatorStatisticsClass getLevelUpStats() {
+        return new GladiatorStatisticsClass(0,0, 11,1);
+    }
+
+
 }

@@ -20,4 +20,10 @@ public class Archer extends Rogue {
         GladiatorStatisticsClass gladiatorStatisticsClass = new GladiatorStatisticsClass(10,25, 10,15);
         return gladiatorStatisticsClass;
     }
+
+    @Override
+    public GladiatorStatisticsClass getLevelUpStats() {
+        return new GladiatorStatisticsClass(1,7,2,2);
+    }
+
 }

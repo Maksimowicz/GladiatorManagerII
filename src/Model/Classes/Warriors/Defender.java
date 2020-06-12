@@ -20,4 +20,10 @@ public class Defender extends Warrior {
         GladiatorStatisticsClass gladiatorStatisticsClass = new GladiatorStatisticsClass(15,12, 10,23);
         return gladiatorStatisticsClass;
     }
+
+    @Override
+    public GladiatorStatisticsClass getLevelUpStats() {
+        return new GladiatorStatisticsClass(2,2,1,8);
+    }
+
 }

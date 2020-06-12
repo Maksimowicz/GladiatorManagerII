@@ -7,7 +7,7 @@ public abstract class GladiatorClass {
     public abstract String getSubType();
     public abstract GladiatorClassSubtypes getGladiatorClassSubtype();
     public abstract GladiatorStatisticsClass getBaseStatistics();
-
+    public abstract GladiatorStatisticsClass getLevelUpStats();
 
 
     final public String getFullClassDescription()

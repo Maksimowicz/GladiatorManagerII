@@ -20,4 +20,10 @@ public class Illusionist extends Mage {
         GladiatorStatisticsClass gladiatorStatisticsClass = new GladiatorStatisticsClass(19,5, 27,9);
         return gladiatorStatisticsClass;
     }
+
+    @Override
+    public GladiatorStatisticsClass getLevelUpStats() {
+        return new GladiatorStatisticsClass(2,1,8,1);
+    }
+
 }

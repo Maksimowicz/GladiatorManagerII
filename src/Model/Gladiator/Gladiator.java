@@ -28,6 +28,25 @@ public abstract class Gladiator {
 
     private GladiatorStatisticsClass gladiatorStatisticsClass;
 
+
+
+    public Gladiator(Race gladiatorRace, GladiatorClass gladiatorClass, String gladiatorName, int level)
+    {
+        this.gladiatorRace = gladiatorRace;
+        this.gladiatorClass = gladiatorClass;
+        skillList = new ArrayList<Skill>();
+        this.gladiatorName = gladiatorName;
+
+        this.healthPoints = this.getBaseHealthPoints();
+        this.gladiatorStatisticsClass = gladiatorClass.getBaseStatistics();
+        this.Level = 1;
+
+        for(int i = 0; i < level; i++)
+        {
+            this.levelUp();
+        }
+    }
+
     public Gladiator(Race gladiatorRace, GladiatorClass gladiatorClass, String gladiatorName)
     {
         this.gladiatorRace = gladiatorRace;
@@ -37,6 +56,7 @@ public abstract class Gladiator {
 
         this.healthPoints = this.getBaseHealthPoints();
         this.gladiatorStatisticsClass = gladiatorClass.getBaseStatistics();
+        this.Level = 1;
     }
 
 
@@ -143,8 +163,17 @@ public abstract class Gladiator {
     final public void addExpirience(int ExpirienceToAdd)
     {
         this.Expirience += ExpirienceToAdd;
+        if(this.Expirience > this.getNextLevelExpirience())
+        {
+            this.levelUp();
+        }
+    }
 
-
+    final public void levelUp()
+    {
+        this.getGladiatorStatisticsClass().addLevelUp(gladiatorClass.getLevelUpStats());
+        this.baseHealthPoints += this.getLevelUpBaseHealthBoost();
+        this.Level++;
     }
 
     final public String getGladiatorName()
@@ -152,7 +181,7 @@ public abstract class Gladiator {
         return this.gladiatorName;
     }
 
-    abstract protected int getBaseHealthPoints();
+
 
     public int getHealthPoints() {
         return healthPoints;
@@ -185,5 +214,21 @@ public abstract class Gladiator {
     {
         this.healthPoints = baseHealthPoints;
     }
+
+
+
+    final public int getNextLevelExpirience()
+    {
+        return 100*getLevel()*getLevel();
+    }
+
+
+    abstract public double getGladiatorCost();
+
+    abstract public int getLevelUpBaseHealthBoost();
+
+    abstract protected int getBaseHealthPoints();
+
+    abstract public String getRarity();
 
 }

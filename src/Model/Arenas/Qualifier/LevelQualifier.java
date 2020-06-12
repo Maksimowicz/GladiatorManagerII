@@ -19,4 +19,16 @@ public class LevelQualifier implements ArenaQualifier{
 
         return true;
     }
+
+    @Override
+    public String getName() {
+        return "Qualify by gladiator level";
+    }
+
+    @Override
+    public String getDescription() {
+        return Integer.toString(levelRequirement);
+    }
+
+
 }

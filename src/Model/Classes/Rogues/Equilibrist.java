@@ -21,4 +21,10 @@ public class Equilibrist extends Rogue {
 
         return gladiatorStatisticsClass;
     }
+
+    @Override
+    public GladiatorStatisticsClass getLevelUpStats() {
+        return new GladiatorStatisticsClass(2,5,2,3);
+    }
+
 }

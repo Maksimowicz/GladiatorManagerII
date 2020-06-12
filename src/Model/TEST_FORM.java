@@ -1,7 +1,5 @@
 package Model;
 
-import Model.Arenas.Qualifier.ClassQualifier;
-import Model.Arenas.Qualifier.RaceQualifier;
 import Model.Classes.GladiatorClassSubtypes;
 import Model.Classes.Mages.MageSubtypes;
 import Model.Classes.Mages.MagesFactory;
@@ -9,9 +7,7 @@ import Model.Classes.Rogues.RogueSubtypes;
 import Model.Classes.Rogues.RoguesFactory;
 import Model.Classes.Warriors.WarriorSubtypes;
 import Model.Classes.Warriors.WarriorsFactory;
-import Model.Gladiator.CommonGladiator;
-import Model.Gladiator.LegendaryGladiator;
-import Model.Gladiator.RareGladiator;
+import Model.Gladiator.*;
 import Model.Races.Race;
 import Model.Races.RaceTypes;
 
@@ -23,24 +19,54 @@ import java.util.HashSet;
 public class TEST_FORM {
     private JButton button1;
     private JPanel panel1;
-    private JTextField textField1;
+    private JTextField LVL;
     private JTextField textField2;
     private JTextField textField3;
     private JLabel LABEL_FIRST;
-    private JLabel LABEL_SECOND;
     private JTextField textField4;
     private JTextField textField5;
     private JTextField textField6;
+    private JButton LevelUp;
+    private JTextField EXP;
+    private JTextField EXP_NXT;
+    private JTextField STR;
+    private JTextField HP;
+    private JTextField AGI;
+    private JTextField INT;
+    private JTextField DEF;
+
+    Gladiator testedGladiator;
+
+
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("TEST_FORM");
+        JFrame frame = new JFrame("TAWERNA");
         frame.setContentPane(new TEST_FORM().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
     }
 
+
+    public void setTextFields()
+    {
+        LVL.setText(Integer.toString(testedGladiator.Level));
+        HP.setText(Integer.toString(testedGladiator.getHealthPoints()));
+        STR.setText(Integer.toString(testedGladiator.getGladiatorStatisticsClass().getStatistic(GladiatorStatistic.Strength)));
+        AGI.setText(Integer.toString(testedGladiator.getGladiatorStatisticsClass().getStatistic(GladiatorStatistic.Agility)));
+        INT.setText(Integer.toString(testedGladiator.getGladiatorStatisticsClass().getStatistic(GladiatorStatistic.Intelligence)));
+        DEF.setText(Integer.toString(testedGladiator.getGladiatorStatisticsClass().getStatistic(GladiatorStatistic.Defence)));
+        EXP.setText("TO IMPLEMENT");
+        EXP_NXT.setText(Integer.toString(testedGladiator.getNextLevelExpirience()));
+    }
+
+
     public TEST_FORM() {
+
+
+
+
+
         button1.addActionListener(new ActionListener() {
             @Override
 
@@ -64,32 +90,18 @@ public class TEST_FORM {
                                                                                 roguesFactory.createGladiatorClass(RogueSubtypes.constructAssassin()),
                                                                                 "Krzysiu");
 
-                //SET with archer, duelist and curser
+                testedGladiator = gladiatorElfDuelist;
+                setTextFields();
 
-                LABEL_FIRST.setText("ARCHER DUELIST CURSER");
+            }
+        });
+        LevelUp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                testedGladiator.levelUp();
+                testedGladiator.prepareForFight();
 
-                hashSet.add(RogueSubtypes.constructArcher());
-                hashSet.add(WarriorSubtypes.constructDuelist());
-                hashSet.add(MageSubtypes.constructCurser());
-
-                raceTypesSet.add(RaceTypes.Elf);
-                raceTypesSet.add(RaceTypes.Dwarf);
-                raceTypesSet.add(RaceTypes.Kobold);
-
-                ClassQualifier classQualifier = new ClassQualifier(hashSet);
-                RaceQualifier raceQualifier = new RaceQualifier(raceTypesSet);
-
-                textField1.setText("CHECK IF ELF DUELIST CAN BE ADDED:" + " " + classQualifier.validateGladiator(gladiatorElfDuelist));
-                textField2.setText("CHECK IF ORC CURSER CAN BE ADDED:" + " "+ classQualifier.validateGladiator(gladiatorOrcCurser));
-                textField3.setText("CHECK IF KOBOLD ASSASSIN CAN BE ADDED:" + " " + classQualifier.validateGladiator(gladiatorKoboldAssassin));
-
-                LABEL_SECOND.setText("ELF DWARF KOBOLD");
-
-                textField4.setText("CHECK IF ELF ELF CAN BE ADDED:" + " " + raceQualifier.validateGladiator(gladiatorElfDuelist));
-                textField5.setText("CHECK IF ORC ORC CAN BE ADDED:" + " "+ raceQualifier.validateGladiator(gladiatorOrcCurser));
-                textField6.setText("CHECK IF KOBOLD ASSASSIN CAN BE ADDED:" + " " + raceQualifier.validateGladiator(gladiatorKoboldAssassin));
-
-
+                setTextFields();
             }
         });
     }
