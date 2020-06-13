@@ -16,6 +16,7 @@ import Model.Gladiator.GladiatorFactory.LegendaryGladiatorFactory;
 import Model.Gladiator.GladiatorFactory.RareGladiatorFactory;
 import Model.Races.Race;
 import Model.Races.RaceTypes;
+import Model.Skills.Common.Punch;
 
 public class GladiatorDummy {
     String name;
@@ -69,9 +70,9 @@ public class GladiatorDummy {
         return this.level;
     }
 
-    public double  getCost()
+    public int  getCost()
     {
-        int multiplier = 100 + rarity * 50;
+        int multiplier = (rarity+1) * 100;
 
         return multiplier*this.level;
     }
@@ -115,7 +116,10 @@ public class GladiatorDummy {
         gladiatorClass = gladiatorClassAbstractFactory.createGladiatorClass(this.className);
         race = Race.createRace(this.raceTypes);
 
-        return gladiatorAbstractFactory.createGladiator(race, gladiatorClass, name, level);
+
+        Gladiator gladiator = gladiatorAbstractFactory.createGladiator(race, gladiatorClass, name, level);
+        gladiator.addSkill(new Punch(gladiator));
+        return gladiator;
     }
 
 

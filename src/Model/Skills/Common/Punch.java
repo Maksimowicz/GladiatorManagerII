@@ -3,6 +3,7 @@ package Model.Skills.Common;
 import Model.Gladiator.Gladiator;
 import Model.Gladiator.GladiatorStatistic;
 import Model.Skills.Effect.SkillEffect;
+import Model.Skills.Skill;
 
 public class Punch extends CommonSkill {
 
@@ -29,28 +30,38 @@ public class Punch extends CommonSkill {
     }
 
     @Override
-    protected int getSkillDamage() {
+    public int getSkillDamage() {
         return 10 + 2 * owner.getGladiatorStatisticsClass().getStatistic(statisticMultiper);
     }
 
     @Override
-    protected int getSkillHeal() {
+    public int getSkillHeal() {
         return 0;
     }
 
     @Override
-    protected int getStatisticBoost() {
+    public int getStatisticBoost() {
         return 0;
     }
 
     @Override
-    protected GladiatorStatistic getBoostedStatistics() {
+    public GladiatorStatistic getBoostedStatistics() {
         return GladiatorStatistic.None;
     }
 
     @Override
-    protected boolean getIsSelfDamage() {
+    public boolean getIsSelfDamage() {
         return false;
+    }
+
+    @Override
+    public Skill getNewInstance() {
+        return new Punch(null);
+    }
+
+    @Override
+    public int getCost() {
+        return 50;
     }
 
 

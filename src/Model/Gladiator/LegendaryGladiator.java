@@ -19,7 +19,7 @@ public class LegendaryGladiator extends Gladiator{
     }
 
     @Override
-    public double getGladiatorCost() {
+    public int getGladiatorCost() {
         return this.getLevel()*300;
     }
 

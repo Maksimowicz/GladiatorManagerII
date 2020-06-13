@@ -1,4 +1,4 @@
-package Model;
+package Model.FORMS;
 
 import Model.Classes.GladiatorClassSubtypes;
 import Model.Classes.Mages.MageSubtypes;

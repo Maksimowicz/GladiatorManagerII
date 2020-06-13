@@ -1,14 +1,15 @@
-package Model;
+package Model.FORMS;
 
 import Model.Gladiator.GladiatorDummy.GladiatorDummy;
+import Model.PlayerContext.PlayerContext;
 import Model.Tavern.TaverController.Tavern;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 
@@ -62,67 +63,109 @@ public class TAVERN_FORM {
     private JButton HireGladiator_4;
     private JButton HireGladiator_5;
     private JButton HireGladiator_6;
+    private JLabel GoldLabel;
 
 
     ArrayList<GladiatorControlGroup> gladiatorControlGroup;
     Tavern tavern;
+    PlayerContext playerContext;
+    MAIN_FORM parent;
 
-
+    private void disableAllElementsInPanel(JPanel jPanel)
+    {
+        for(Component component : jPanel.getComponents())
+        {
+            component.setEnabled(false);
+        }
+    }
 
     public JPanel getJPanel()
     {
         return this.MainPanel;
     }
 
+    public boolean hireGladiator(int gladiatorIndex)
+    {
+        if(playerContext.isTeamFull())
+        {
+            JOptionPane.showMessageDialog(MainPanel, "Team is full.");
+            return false;
+        }
 
 
-    public TAVERN_FORM() {
+        if(!playerContext.payGold(tavern.getGladiatorsInTavern().get(gladiatorIndex).getCost()))
+        {
+            JOptionPane.showMessageDialog(MainPanel, "No enough money.");
+            return false;
+        }
+
+
+        playerContext.putGladiatorInTeam(tavern.buyGladiator(gladiatorIndex));
+        GoldLabel.setText(Integer.toString( playerContext.getGold()));
+        return true;
+
+
+
+    }
+
+
+    public TAVERN_FORM(PlayerContext playerContext, MAIN_FORM parent) {
         this.tavern =  new Tavern();
         gladiatorControlGroup = new ArrayList<GladiatorControlGroup>();
+        this.playerContext = playerContext;
+        this.parent = parent;
 
-
-        MainPanel.addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentShown(ComponentEvent e) {
-                super.componentShown(e);
-
-            }
-        });
-
+        getControlGroups();
+        showGladiatorsInfo();
+        GoldLabel.setText(Integer.toString( playerContext.getGold()));
+        //addCloseListener();
         HireGladiator_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                if(hireGladiator(0)) {
+                    disableAllElementsInPanel(Gladiator_1);
+                }
             }
         });
         HireGladiator_2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if(hireGladiator(1)) {
+                    disableAllElementsInPanel(Gladiator_2);
+                }
             }
         });
         HireGladiator_3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if(hireGladiator(2)) {
+                    disableAllElementsInPanel(Gladiator_3);
+                }
             }
         });
         HireGladiator_4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if(hireGladiator(3)) {
+                    disableAllElementsInPanel(Gladiator_4);
+                }
             }
         });
         HireGladiator_5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if(hireGladiator(4)) {
+                    disableAllElementsInPanel(Gladiator_5);
+                }
             }
         });
         HireGladiator_6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if(hireGladiator(5)) {
+                    disableAllElementsInPanel(Gladiator_6);
+                }
             }
         });
     }
@@ -206,7 +249,47 @@ public class TAVERN_FORM {
         }
     }
 
+    public JPanel getMainFrame()
+    {
+        return this.MainPanel;
+    }
 
+    public void  addCloseListener() {
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(MainPanel);
+        topFrame.addWindowListener(new WindowListener() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (JOptionPane.showConfirmDialog(getMainFrame(), "Do you want to leave Tavern?", "Confirm exit.", JOptionPane.OK_OPTION, 0, new ImageIcon("")) != 0) {
+
+                    return;
+                }
+
+                parent.setEnableForm(true);
+                JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(MainPanel);
+                topFrame.dispose();
+                //System.exit(-1);
+            }
+
+            @Override
+            public void windowOpened(WindowEvent e) {}
+
+            @Override
+            public void windowClosed(WindowEvent e) {}
+
+            @Override
+            public void windowIconified(WindowEvent e) {}
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+
+            @Override
+            public void windowActivated(WindowEvent e) {}
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        });
+    }
 
     class GladiatorControlGroup
     {
@@ -275,42 +358,5 @@ public class TAVERN_FORM {
 
     }
 
-    public class MyFRAME extends JFrame
-    {
-        TAVERN_FORM tawernTEST;
 
-        public MyFRAME()
-        {
-            super("TAWERNA");
-
-        }
-
-        public void run()
-        {
-
-            tawernTEST = new TAVERN_FORM();
-
-            this.setContentPane(tawernTEST.MainPanel);
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.pack();
-            this.setVisible(true);
-        }
-    }
-
-
-
-
-    public static void main(String[] args) {
-
-        TAVERN_FORM form = new TAVERN_FORM();
-        JFrame frame = new JFrame("TAWERNA");
-        frame.setContentPane(form.MainPanel);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-
-        form.getControlGroups();
-        form.showGladiatorsInfo();
-        int a = 0;
-    }
 }

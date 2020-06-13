@@ -39,7 +39,7 @@ public abstract class Gladiator {
 
         this.healthPoints = this.getBaseHealthPoints();
         this.gladiatorStatisticsClass = gladiatorClass.getBaseStatistics();
-        this.Level = 1;
+        this.Level = 0;
 
         for(int i = 0; i < level; i++)
         {
@@ -56,7 +56,7 @@ public abstract class Gladiator {
 
         this.healthPoints = this.getBaseHealthPoints();
         this.gladiatorStatisticsClass = gladiatorClass.getBaseStatistics();
-        this.Level = 1;
+        this.Level = 0;
     }
 
 
@@ -106,6 +106,7 @@ public abstract class Gladiator {
     {
         if(skill.canBeLearned(this.gladiatorClass, this.gladiatorRace))
         {
+            skill.setOwner(this);
             skillList.add(skill);
             return true;
         }
@@ -215,6 +216,11 @@ public abstract class Gladiator {
         this.healthPoints = baseHealthPoints;
     }
 
+    public void removeNullSkills()
+    {
+        while(skillList.remove(null));
+    }
+
 
 
     final public int getNextLevelExpirience()
@@ -223,7 +229,7 @@ public abstract class Gladiator {
     }
 
 
-    abstract public double getGladiatorCost();
+    abstract public int getGladiatorCost();
 
     abstract public int getLevelUpBaseHealthBoost();
 

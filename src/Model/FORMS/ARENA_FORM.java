@@ -1,4 +1,4 @@
-package Model;
+package Model.FORMS;
 
 import Model.Arenas.ArenaController.ArenaProxy;
 import Model.Arenas.ArenaController.RandomArenProxyGenerator;

@@ -1,4 +1,4 @@
-package Model;
+package Model.FORMS;
 
 import Model.Arenas.ArenaModel.GladiatorArena;
 import Model.Arenas.Qualifier.ArenaQualifier;

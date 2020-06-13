@@ -21,7 +21,7 @@ public class RareGladiator extends Gladiator {
     }
 
     @Override
-    public double getGladiatorCost() {
+    public int getGladiatorCost() {
         return this.getLevel()*200;
     }
 

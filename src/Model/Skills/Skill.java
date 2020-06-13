@@ -8,7 +8,7 @@ import Model.Skills.Effect.SkillEffect;
 
 public abstract class Skill {
 
-    final protected Gladiator owner; //Caller of the spell
+    protected Gladiator owner; //Caller of the spell
 
     final protected GladiatorStatistic statisticMultiper;
 
@@ -18,6 +18,11 @@ public abstract class Skill {
         this.owner = owner;
         this.statisticMultiper = statisticMultiper;
 
+    }
+
+    public void setOwner(Gladiator owner)
+    {
+        this.owner = owner;
     }
 
     abstract public String getName(); //Returns name of skill
@@ -31,10 +36,20 @@ public abstract class Skill {
         return skillEffect;
     }
 
-    abstract protected int getSkillDamage();
-    abstract protected int getSkillHeal();
-    abstract protected int getStatisticBoost();
-    abstract protected GladiatorStatistic getBoostedStatistics();
-    abstract protected boolean getIsSelfDamage();
+
+    public GladiatorStatistic getStatisticMultiper()
+    {
+        return this.statisticMultiper;
+    }
+
+    abstract public int getSkillDamage();
+    abstract public int getSkillHeal();
+    abstract public int getStatisticBoost();
+    abstract public GladiatorStatistic getBoostedStatistics();
+    abstract public boolean getIsSelfDamage();
+
+
+    abstract public Skill getNewInstance();
+    abstract public int getCost();
 
 }

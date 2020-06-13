@@ -22,7 +22,7 @@ public class CommonGladiator extends Gladiator {
     }
 
     @Override
-    public double getGladiatorCost() {
+    public int getGladiatorCost() {
         return this.getLevel()*100;
     }
 
