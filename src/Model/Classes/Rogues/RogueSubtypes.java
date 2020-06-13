@@ -1,7 +1,6 @@
 package Model.Classes.Rogues;
 
 import Model.Classes.GladiatorClassSubtypes;
-import org.jetbrains.annotations.NotNull;
 
 public class RogueSubtypes extends GladiatorClassSubtypes {
     private RogueSubtypes(String value)
@@ -23,4 +22,5 @@ public class RogueSubtypes extends GladiatorClassSubtypes {
     {
         return new RogueSubtypes("Equilibrist");
     }
+
 }

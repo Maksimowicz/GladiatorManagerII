@@ -2,6 +2,7 @@ package Model.Gladiator;
 
 import Model.Classes.GladiatorClass;
 import Model.Races.Race;
+import Model.Skills.Effect.SkillEffect;
 import Model.Skills.Skill;
 import Model.Weapons.Weapon;
 
@@ -18,11 +19,33 @@ public abstract class Gladiator {
     protected List<Skill> skillList;
 
     protected int Expirience;
-    protected int Level;
+    public int Level; //TODO: Remove public for tests
 
     private String gladiatorName;
 
     private int healthPoints;
+    private int baseHealthPoints;
+
+    private GladiatorStatisticsClass gladiatorStatisticsClass;
+
+
+
+    public Gladiator(Race gladiatorRace, GladiatorClass gladiatorClass, String gladiatorName, int level)
+    {
+        this.gladiatorRace = gladiatorRace;
+        this.gladiatorClass = gladiatorClass;
+        skillList = new ArrayList<Skill>();
+        this.gladiatorName = gladiatorName;
+
+        this.healthPoints = this.getBaseHealthPoints();
+        this.gladiatorStatisticsClass = gladiatorClass.getBaseStatistics();
+        this.Level = 0;
+
+        for(int i = 0; i < level; i++)
+        {
+            this.levelUp();
+        }
+    }
 
     public Gladiator(Race gladiatorRace, GladiatorClass gladiatorClass, String gladiatorName)
     {
@@ -32,6 +55,8 @@ public abstract class Gladiator {
         this.gladiatorName = gladiatorName;
 
         this.healthPoints = this.getBaseHealthPoints();
+        this.gladiatorStatisticsClass = gladiatorClass.getBaseStatistics();
+        this.Level = 0;
     }
 
 
@@ -81,12 +106,45 @@ public abstract class Gladiator {
     {
         if(skill.canBeLearned(this.gladiatorClass, this.gladiatorRace))
         {
+            skill.setOwner(this);
             skillList.add(skill);
             return true;
         }
 
         return false;
     }
+
+    final public boolean canLearnMoreSkills()
+    {
+        return skillList.size() >= 4 ? false : true;
+    }
+
+    final public boolean replaceSkill(Skill skill, int skillToReplace)
+    {
+        if((skillToReplace < 0 || skillToReplace >3) || skillToReplace > this.skillList.size()-1)
+        {
+            return false; //No more than 4 skills or not enough skills
+        }
+
+        if(skill.canBeLearned(this.gladiatorClass, this.gladiatorRace))
+        {
+            skillList.set(skillToReplace, skill);
+            return true;
+        }
+
+        return false;
+    }
+
+    final public SkillEffect useSkill(int skillIndex, Gladiator target)
+    {
+        if(skillIndex > skillList.size()-1 || skillIndex < 0)
+        {
+            return null;
+        }
+
+        return skillList.get(skillIndex).useSkill(target);
+    }
+
 
     final public Race getGladiatorRaceType()
     {
@@ -106,8 +164,17 @@ public abstract class Gladiator {
     final public void addExpirience(int ExpirienceToAdd)
     {
         this.Expirience += ExpirienceToAdd;
+        if(this.Expirience > this.getNextLevelExpirience())
+        {
+            this.levelUp();
+        }
+    }
 
-
+    final public void levelUp()
+    {
+        this.getGladiatorStatisticsClass().addLevelUp(gladiatorClass.getLevelUpStats());
+        this.baseHealthPoints += this.getLevelUpBaseHealthBoost();
+        this.Level++;
     }
 
     final public String getGladiatorName()
@@ -115,6 +182,59 @@ public abstract class Gladiator {
         return this.gladiatorName;
     }
 
+
+
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    public void setHealthPoints(int healthPoints) {
+        this.healthPoints = healthPoints;
+    }
+
+    final public void setBaseHealthPoints()
+    {
+        this.baseHealthPoints = this.getBaseHealthPoints();
+    }
+
+    final public void removeHealthPoints(int healthPointsToRemove)
+    {
+        healthPoints -= Math.abs(healthPointsToRemove);
+    }
+
+    final public void addHealthPoints(int healthPointsToAdd)
+    {
+        healthPoints += Math.abs(healthPointsToAdd);
+    }
+
+    public GladiatorStatisticsClass getGladiatorStatisticsClass() {
+        return gladiatorStatisticsClass;
+    }
+
+    public void prepareForFight()
+    {
+        this.healthPoints = baseHealthPoints;
+    }
+
+    public void removeNullSkills()
+    {
+        while(skillList.remove(null));
+    }
+
+
+
+    final public int getNextLevelExpirience()
+    {
+        return 100*getLevel()*getLevel();
+    }
+
+
+    abstract public int getGladiatorCost();
+
+    abstract public int getLevelUpBaseHealthBoost();
+
     abstract protected int getBaseHealthPoints();
+
+    abstract public String getRarity();
 
 }

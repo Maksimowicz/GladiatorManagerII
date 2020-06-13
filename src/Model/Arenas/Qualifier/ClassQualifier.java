@@ -21,4 +21,28 @@ public class ClassQualifier implements ArenaQualifier {
 
         return false;
     }
+
+    @Override
+    public String getName() {
+        return "Qualify by class";
+    }
+
+    @Override
+    public String getDescription() {
+        String classesToQualify = "";
+
+        for(GladiatorClassSubtypes calssSubtype : classSubtypes)
+        {
+            classesToQualify += calssSubtype.getValue();
+            classesToQualify += ",";
+        }
+
+        if(classesToQualify != "")
+        {
+            classesToQualify = classesToQualify.substring(0, classesToQualify.length() -1);
+        }
+        return classesToQualify;
+    }
+
+
 }

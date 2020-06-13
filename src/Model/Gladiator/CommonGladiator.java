@@ -5,6 +5,12 @@ import Model.Races.Race;
 
 public class CommonGladiator extends Gladiator {
 
+    public CommonGladiator(Race gladiatorRace, GladiatorClass gladiatorClass, String gladiatorName, int level)
+    {
+        super(gladiatorRace, gladiatorClass, gladiatorName, level);
+    }
+
+
     public CommonGladiator(Race gladiatorRace, GladiatorClass gladiatorClass, String gladiatorName)
     {
         super(gladiatorRace, gladiatorClass, gladiatorName);
@@ -12,11 +18,24 @@ public class CommonGladiator extends Gladiator {
 
     protected int getBaseHealthPoints()
     {
-        return 10*1*getLevel();
+        return 200*1*getLevel();
     }
 
-    public int punch()
-    {
-        return 12;
+    @Override
+    public int getGladiatorCost() {
+        return this.getLevel()*100;
     }
+
+    @Override
+    public int getLevelUpBaseHealthBoost() {
+        return 200;
+    }
+
+
+    @Override
+    public String getRarity()
+    {
+        return "Common";
+    }
+
 }

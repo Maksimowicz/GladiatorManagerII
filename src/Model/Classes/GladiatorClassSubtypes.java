@@ -28,4 +28,5 @@ public abstract class GladiatorClassSubtypes {
     public int hashCode() {
         return Objects.hash(value);
     }
+
 }

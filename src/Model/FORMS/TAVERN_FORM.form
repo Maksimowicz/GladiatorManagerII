@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Model.FORMS.TAVERN_FORM">
+  <grid id="27dc6" binding="MainPanel" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="500" height="1453"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="62a11" binding="Gladiator_1" layout-manager="GridLayoutManager" row-count="7" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="517ef" class="javax.swing.JLabel" binding="Glad_1_Name">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <name value="Glad_1_Name"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="e7a46" class="javax.swing.JTextField" binding="Glad_1_Rarity">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_1_Rarity"/>
+            </properties>
+          </component>
+          <component id="493db" class="javax.swing.JTextField" binding="Glad_1_Level">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_1_Level"/>
+            </properties>
+          </component>
+          <component id="e97c9" class="javax.swing.JTextField" binding="Glad_1_Race">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_1_Race"/>
+            </properties>
+          </component>
+          <component id="63c5" class="javax.swing.JTextField" binding="Glad_1_Class">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_1_Class"/>
+            </properties>
+          </component>
+          <component id="6859c" class="javax.swing.JTextField" binding="Glad_1_Cost">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_1_Cost"/>
+            </properties>
+          </component>
+          <component id="932fe" class="javax.swing.JButton" binding="HireGladiator_1">
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Hire gladiator"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="26fee" binding="Gladiator_2" layout-manager="GridLayoutManager" row-count="7" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="20261" class="javax.swing.JLabel" binding="Glad_2_Name">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <name value="Glad_2_Name"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="a0d5c" class="javax.swing.JTextField" binding="Glad_2_Rarity">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_2_Rarity"/>
+            </properties>
+          </component>
+          <component id="b13c" class="javax.swing.JTextField" binding="Glad_2_Level">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_2_Level"/>
+            </properties>
+          </component>
+          <component id="d5b32" class="javax.swing.JTextField" binding="Glad_2_Race">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_2_Race"/>
+            </properties>
+          </component>
+          <component id="af1c7" class="javax.swing.JTextField" binding="Glad_2_Class">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_2_Class"/>
+            </properties>
+          </component>
+          <component id="27755" class="javax.swing.JTextField" binding="Glad_2_Cost">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_2_Cost"/>
+            </properties>
+          </component>
+          <component id="b55ed" class="javax.swing.JButton" binding="HireGladiator_2">
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Hire gladiator"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="61ab7" binding="Gladiator_3" layout-manager="GridLayoutManager" row-count="7" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="2383f" class="javax.swing.JLabel" binding="Glad_3_Name">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <name value="Glad_3_Name"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="fa029" class="javax.swing.JTextField" binding="Glad_3_Rarity">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_3_Rarity"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="47ce2" class="javax.swing.JTextField" binding="Glad_3_Level">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_3_Level"/>
+            </properties>
+          </component>
+          <component id="cbe86" class="javax.swing.JTextField" binding="Glad_3_Race">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_3_Race"/>
+            </properties>
+          </component>
+          <component id="cca76" class="javax.swing.JTextField" binding="Glad_3_Class">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_3_Class"/>
+            </properties>
+          </component>
+          <component id="164c" class="javax.swing.JTextField" binding="Glad_3_Cost">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_3_Cost"/>
+            </properties>
+          </component>
+          <component id="36b07" class="javax.swing.JButton" binding="HireGladiator_3">
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Hire gladiator"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="771a8" binding="Gladiator_4" layout-manager="GridLayoutManager" row-count="7" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="28ea7" class="javax.swing.JLabel" binding="Glad_4_Name">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <enabled value="true"/>
+              <name value="Glad_4_Name"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="bc997" class="javax.swing.JTextField" binding="Glad_4_Rarity">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <enabled value="true"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_4_Rarity"/>
+            </properties>
+          </component>
+          <component id="de000" class="javax.swing.JTextField" binding="Glad_4_Level">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <enabled value="true"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_4_Level"/>
+            </properties>
+          </component>
+          <component id="e5cfe" class="javax.swing.JTextField" binding="Glad_4_Race">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <enabled value="true"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_4_Race"/>
+            </properties>
+          </component>
+          <component id="cbb8e" class="javax.swing.JTextField" binding="Glad_4_Class">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <enabled value="true"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_4_Class"/>
+            </properties>
+          </component>
+          <component id="b25fb" class="javax.swing.JTextField" binding="Glad_4_Cost">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <enabled value="true"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_4_Cost"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="63a04" class="javax.swing.JButton" binding="HireGladiator_4">
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Hire gladiator"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="8ac4e" binding="Gladiator_5" layout-manager="GridLayoutManager" row-count="7" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="3d3db" class="javax.swing.JLabel" binding="Glad_5_Name">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_5_Name"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="e5555" class="javax.swing.JTextField" binding="Glad_5_Rarity">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_5_Rarity"/>
+            </properties>
+          </component>
+          <component id="cd8c8" class="javax.swing.JTextField" binding="Glad_5_Level">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_5_Level"/>
+            </properties>
+          </component>
+          <component id="9d7b" class="javax.swing.JTextField" binding="Glad_5_Race">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_5_Race"/>
+            </properties>
+          </component>
+          <component id="7030d" class="javax.swing.JTextField" binding="Glad_5_Class">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_5_Class"/>
+            </properties>
+          </component>
+          <component id="da4d4" class="javax.swing.JTextField" binding="Glad_5_Cost">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_5_Cost"/>
+            </properties>
+          </component>
+          <component id="89e80" class="javax.swing.JButton" binding="HireGladiator_5">
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Hire gladiator"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="e6d94" binding="Gladiator_6" layout-manager="GridLayoutManager" row-count="7" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="93612" class="javax.swing.JLabel" binding="Glad_6_Name">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <name value="Glad_6_Name"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="5d109" class="javax.swing.JTextField" binding="Glad_6_Rarity">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_6_Rarity"/>
+            </properties>
+          </component>
+          <component id="ec28" class="javax.swing.JTextField" binding="Glad_6_Level">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_6_Level"/>
+            </properties>
+          </component>
+          <component id="c5986" class="javax.swing.JTextField" binding="Glad_6_Race">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_6_Race"/>
+            </properties>
+          </component>
+          <component id="6f0dc" class="javax.swing.JTextField" binding="Glad_6_Class">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_6_Class"/>
+            </properties>
+          </component>
+          <component id="b6a77" class="javax.swing.JTextField" binding="Glad_6_Cost">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <horizontalAlignment value="0"/>
+              <name value="Glad_6_Cost"/>
+            </properties>
+          </component>
+          <component id="ae894" class="javax.swing.JButton" binding="HireGladiator_6">
+            <constraints>
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Hire gladiator"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <component id="959d0" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Gold"/>
+        </properties>
+      </component>
+      <component id="d0261" class="javax.swing.JLabel" binding="GoldLabel">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="0"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

@@ -22,4 +22,26 @@ public class RaceQualifier implements ArenaQualifier {
 
         return false;
     }
+
+    @Override
+    public String getName() {
+        return "Qualify by race";
+    }
+
+    @Override
+    public String getDescription() {
+        String racesToQualify = "";
+
+        for(RaceTypes raceType : raceTypes)
+        {
+            racesToQualify += raceType;
+            racesToQualify += ",";
+        }
+
+        if(racesToQualify != "")
+        {
+            racesToQualify = racesToQualify.substring(0, racesToQualify.length() -1);
+        }
+        return racesToQualify;
+    }
 }
