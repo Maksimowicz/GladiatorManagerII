@@ -1,6 +1,10 @@
 package Model.Gladiator;
 
 import Model.Classes.GladiatorClass;
+import Model.Gladiator.GladiatorTitle.EmptyTitle;
+import Model.Gladiator.GladiatorTitle.RookieTitle;
+import Model.Gladiator.GladiatorTitle.TitleDecorator;
+import Model.Gladiator.GladiatorTitle.VeteranTitle;
 import Model.Races.Race;
 import Model.Skills.Effect.SkillEffect;
 import Model.Skills.Skill;
@@ -8,6 +12,7 @@ import Model.Weapons.Weapon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public abstract class Gladiator {
     protected Race gladiatorRace;
@@ -19,7 +24,7 @@ public abstract class Gladiator {
     protected List<Skill> skillList;
 
     protected int Expirience;
-    public int Level; //TODO: Remove public for tests
+    private int Level;
 
     private String gladiatorName;
 
@@ -27,7 +32,9 @@ public abstract class Gladiator {
     private int baseHealthPoints;
 
     private GladiatorStatisticsClass gladiatorStatisticsClass;
+    Random random;
 
+    TitleDecorator titleDecorator;
 
 
     public Gladiator(Race gladiatorRace, GladiatorClass gladiatorClass, String gladiatorName, int level)
@@ -40,11 +47,14 @@ public abstract class Gladiator {
         this.healthPoints = this.getBaseHealthPoints();
         this.gladiatorStatisticsClass = gladiatorClass.getBaseStatistics();
         this.Level = 0;
+        this.titleDecorator = new EmptyTitle();
 
         for(int i = 0; i < level; i++)
         {
             this.levelUp();
         }
+
+        random = new Random();
     }
 
     public Gladiator(Race gladiatorRace, GladiatorClass gladiatorClass, String gladiatorName)
@@ -175,11 +185,21 @@ public abstract class Gladiator {
         this.getGladiatorStatisticsClass().addLevelUp(gladiatorClass.getLevelUpStats());
         this.baseHealthPoints += this.getLevelUpBaseHealthBoost();
         this.Level++;
+
+        if(this.Level == 10)
+        {
+            this.titleDecorator = new RookieTitle(this.titleDecorator);
+        }
+
+        if(this.Level == 20)
+        {
+            this.titleDecorator = new VeteranTitle(this.titleDecorator);
+        }
     }
 
     final public String getGladiatorName()
     {
-        return this.gladiatorName;
+        return this.gladiatorName + " " + this.titleDecorator.getTitle();
     }
 
 
@@ -237,4 +257,16 @@ public abstract class Gladiator {
 
     abstract public String getRarity();
 
+    public int generateExp()
+    {
+        return (int)(this.getNextLevelExpirience()/3);
+    }
+
+    //Random skill casted by AI
+    public SkillEffect useRandomSkill(Gladiator target)
+    {
+
+        int skillToUse = random.nextInt(skillList.size());
+        return skillList.get(skillToUse).useSkill(target);
+    }
 }

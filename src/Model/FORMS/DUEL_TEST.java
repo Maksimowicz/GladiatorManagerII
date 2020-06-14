@@ -1,38 +1,25 @@
 package Model.FORMS;
 
 import Model.Arenas.ArenaModel.GladiatorArena;
-import Model.Arenas.Qualifier.ArenaQualifier;
-import Model.Arenas.Qualifier.LevelQualifier;
-import Model.Arenas.Rules.ArenaRules;
-import Model.Arenas.Rules.DamageRules;
-import Model.Classes.Mages.MageSubtypes;
-import Model.Classes.Mages.MagesFactory;
-import Model.Classes.Warriors.WarriorSubtypes;
-import Model.Classes.Warriors.WarriorsFactory;
-import Model.Gladiator.Gladiator;
-import Model.Gladiator.RareGladiator;
-import Model.Races.Race;
-import Model.Races.RaceTypes;
-import Model.Skills.Arcane.SiphonLife;
-import Model.Skills.Common.Punch;
-import Model.Skills.Physical.FrenzyStrike;
+import Model.Arenas.Team.TeamEnum;
+import Model.PlayerContext.PlayerContext;
 import Model.Skills.Skill;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
 public class DUEL_TEST {
-    private JPanel MAIN_PANEL;
+    private JPanel MainPanel;
     private JLabel RedHP;
     private JLabel BlueHP;
     private JButton RedSkill1;
     private JButton BlueSkill1;
-    private JButton START_BTN;
     private JLabel BlueLabel;
     private JLabel RedLabel;
-    private JLabel Winner;
     private JLabel TurnCounter;
     private JButton BlueSkill2;
     private JButton RedSkill2;
@@ -40,65 +27,103 @@ public class DUEL_TEST {
     private JButton RedSkill3;
     private JButton BlueSkill4;
     private JButton RedSkill4;
+    private JLabel LastRedUsed;
 
-    ArenaQualifier levelQualifier;
-    ArenaRules     damageRules;
-
-    ArrayList<Gladiator> blueTeam;
-    ArrayList<Gladiator> redTeam;
 
     boolean isStarted;
 
     ArrayList<JButton> redButtons;
     ArrayList<JButton> blueButtons;
 
+    GladiatorArena gladiatorArena;
+    ARENA_FORM parent;
+    PlayerContext playerContext;
+    int indexOfArena = 0;
 
     public void setButtonsLabels()
     {
         int iterator = 0;
-        for(Skill skill : blueTeam.get(0).getSkillList())
+        for(Skill skill : gladiatorArena.getTeamBlueArray().get(0).getSkillList())
         {
             blueButtons.get(iterator).setText(skill.getName());
             blueButtons.get(iterator++).setEnabled(true);
         }
 
         iterator = 0;
-        for(Skill skill : redTeam.get(0).getSkillList())
+        for(Skill skill : gladiatorArena.getTeamRedArray().get(0).getSkillList())
         {
             redButtons.get(iterator).setText(skill.getName());
-            redButtons.get(iterator++).setEnabled(true);
+            redButtons.get(iterator++).setEnabled(false);
         }
     }
 
-    public void enableRedSkills(boolean enable)
-    {
-        for(int i = 0; i < redTeam.get(0).getSkillList().size(); i++)
-        {
-            redButtons.get(i).setEnabled(enable);
-        }
-    }
+
 
     public void enableBlueSkills(boolean enable)
     {
-        for(int i = 0; i < blueTeam.get(0).getSkillList().size(); i++)
+        for(int i = 0; i < gladiatorArena.getTeamBlueArray().get(0).getSkillList().size(); i++)
         {
             blueButtons.get(i).setEnabled(enable);
         }
     }
 
-    GladiatorArena gladiatorArena;
+    public JPanel getMainFrame()
+    {
+        return this.MainPanel;
+    }
 
+    public void  addCloseListener() {
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(MainPanel);
+        topFrame.addWindowListener(new WindowListener() {
 
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if (JOptionPane.showConfirmDialog(getMainFrame(), "Do you want to leave Duel?", "Confirm exit.", JOptionPane.OK_OPTION, 0, new ImageIcon("")) != 0) {
+
+                    return;
+                }
+
+                //playerContext.removeNullsFromTeam();
+                parent.disableGroup(indexOfArena);
+                parent.setEnableForm(true);
+                JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(MainPanel);
+                topFrame.dispose();
+                //System.exit(-1);
+            }
+
+            @Override
+            public void windowOpened(WindowEvent e) {}
+
+            @Override
+            public void windowClosed(WindowEvent e) {}
+
+            @Override
+            public void windowIconified(WindowEvent e) {}
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+
+            @Override
+            public void windowActivated(WindowEvent e) {}
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        });
+    }
 
     public void enableButtons()
     {
         switch (gladiatorArena.getActiveTeam())
         {
             case Red:
-                enableRedSkills(true);
+                gladiatorArena.getLastEffects().add(gladiatorArena.getTeamRedArray().get(0).useRandomSkill(gladiatorArena.getTeamBlueArray().get(0)));
+                LastRedUsed.setText(Integer.toString(gladiatorArena.getLastEffects().get(0).getDamage()));
+                enableBlueSkills(false);
+                roundConclusion();
                 break;
             case Blue:
                 enableBlueSkills(true);
+
                 break;
         }
     }
@@ -107,48 +132,25 @@ public class DUEL_TEST {
 
     public void startFight()
     {
-        WarriorsFactory warriorsFactory = new WarriorsFactory();
-        MagesFactory magesFactory = new MagesFactory();
 
-        blueTeam.add(new RareGladiator(Race.createRace(RaceTypes.Orc),
-                                            warriorsFactory.createGladiatorClass(WarriorSubtypes.constructBerserker()),
-                                            "Zenuś Mordotłuk"));
 
-        redTeam.add(new RareGladiator(Race.createRace(RaceTypes.Dwarf),
-                                        //warriorsFactory.createGladiatorClass(WarriorSubtypes.constructDuelist()),
-                                        magesFactory.createGladiatorClass(MageSubtypes.constructCurser()),
-                                        "Krzyśko Gniewnopały"));
 
         redButtons = new ArrayList<JButton>();
         blueButtons = new ArrayList<JButton>();
 
 
-        blueTeam.get(0).Level = 10;
-        redTeam.get(0).Level = 10;
+        gladiatorArena.getTeamBlueArray().get(0).prepareForFight();
+        gladiatorArena.getTeamRedArray().get(0).prepareForFight();
 
-        blueTeam.get(0).setBaseHealthPoints();
-        redTeam.get(0).setBaseHealthPoints();
-
-        blueTeam.get(0).addSkill(new Punch(blueTeam.get(0)));
-        redTeam.get(0).addSkill(new Punch(redTeam.get(0)));
-
-        blueTeam.get(0).addSkill(new FrenzyStrike(blueTeam.get(0)));
-        redTeam.get(0).addSkill(new SiphonLife(redTeam.get(0)));
-
-        blueTeam.get(0).prepareForFight();
-        redTeam.get(0).prepareForFight();
-
-
-        gladiatorArena = new GladiatorArena(levelQualifier, damageRules, blueTeam, redTeam);
 
         isStarted = true;
 
 
-        RedHP.setText(Integer.toString(redTeam.get(0).getHealthPoints()));
-        BlueHP.setText(Integer.toString(blueTeam.get(0).getHealthPoints()));
+        RedHP.setText(Integer.toString(gladiatorArena.getTeamRedArray().get(0).getHealthPoints()));
+        BlueHP.setText(Integer.toString(gladiatorArena.getTeamBlueArray().get(0).getHealthPoints()));
 
-        RedLabel.setText(redTeam.get(0).getGladiatorName() + " " + redTeam.get(0).getRace() + " " + redTeam.get(0).getGladiatorClass());
-        BlueLabel.setText(blueTeam.get(0).getGladiatorName() + " " + blueTeam.get(0).getRace() + " " + blueTeam.get(0).getGladiatorClass());
+        RedLabel.setText(gladiatorArena.getTeamRedArray().get(0).getGladiatorName() + " " + gladiatorArena.getTeamRedArray().get(0).getRace() + " " + gladiatorArena.getTeamRedArray().get(0).getGladiatorClass());
+        BlueLabel.setText(gladiatorArena.getTeamBlueArray().get(0).getGladiatorName() + " " + gladiatorArena.getTeamBlueArray().get(0).getRace() + " " + gladiatorArena.getTeamBlueArray().get(0).getGladiatorClass());
 
         TurnCounter.setText(Integer.toString(gladiatorArena.getRoundCounter()));
 
@@ -164,35 +166,17 @@ public class DUEL_TEST {
         blueButtons.add(BlueSkill4);
 
         setButtonsLabels();
-    }
-
-
-    public void initializeFight()
-    {
-        if(!isStarted) {
-            levelQualifier = new LevelQualifier(10);
-            damageRules = new DamageRules();
-
-            blueTeam = new ArrayList<Gladiator>();
-            redTeam = new ArrayList<Gladiator>();
-        }
-
+        enableButtons();
 
     }
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("DUEL_TEST");
-        frame.setContentPane(new DUEL_TEST().MAIN_PANEL);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
 
 
 
-    }
+
     public void refreshValues()
     {
-        RedHP.setText(Integer.toString(redTeam.get(0).getHealthPoints()));
-        BlueHP.setText(Integer.toString(blueTeam.get(0).getHealthPoints()));
+        RedHP.setText(Integer.toString(gladiatorArena.getTeamRedArray().get(0).getHealthPoints()));
+        BlueHP.setText(Integer.toString(gladiatorArena.getTeamBlueArray().get(0).getHealthPoints()));
         TurnCounter.setText(Integer.toString(gladiatorArena.getRoundCounter()));
     }
 
@@ -201,8 +185,19 @@ public class DUEL_TEST {
     {
         if(gladiatorArena.nextRound())
         {
-            Winner.setText(gladiatorArena.winnerTeam.toString());
-            enableRedSkills(false);
+
+            if(gladiatorArena.winnerTeam == TeamEnum.Blue) {
+                int expGained = gladiatorArena.getTeamRedArray().get(0).generateExp();
+                int goldGained = gladiatorArena.getTeamRedArray().get(0).getGladiatorCost();
+                JOptionPane.showMessageDialog(MainPanel, "VICTORY!" );
+                JOptionPane.showMessageDialog(MainPanel,"EXP GAINED: " + Integer.toString(expGained) + " GOLD GAINED: " + Integer.toString(goldGained));
+                playerContext.receiveGold(goldGained);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(MainPanel, "DEFEAT!");
+            }
+
             enableBlueSkills(false);
             refreshValues();
             return;
@@ -211,25 +206,20 @@ public class DUEL_TEST {
         refreshValues();
     }
 
-    public DUEL_TEST() {
-        START_BTN.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                initializeFight();
-                startFight();
-                //RedHP.setText("180");
-                START_BTN.setEnabled(false);
-                enableButtons();
+    public DUEL_TEST(PlayerContext playerContext, GladiatorArena gladiatorArena, int indexOfArena, ARENA_FORM parent) {
 
+        this.gladiatorArena = gladiatorArena;
+        this.parent = parent;
+        this.playerContext = playerContext;
+        this.indexOfArena = indexOfArena;
+        startFight();
+        enableButtons();
 
-
-            }
-        });
 
         BlueSkill1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gladiatorArena.getLastEffects().add(blueTeam.get(0).useSkill(0, redTeam.get(0)));
+                gladiatorArena.getLastEffects().add(gladiatorArena.getTeamBlueArray().get(0).useSkill(0, gladiatorArena.getTeamRedArray().get(0)));
                 enableBlueSkills(false);
                 roundConclusion();
 
@@ -239,7 +229,7 @@ public class DUEL_TEST {
         BlueSkill2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gladiatorArena.getLastEffects().add(blueTeam.get(0).useSkill(1, redTeam.get(0)));
+                gladiatorArena.getLastEffects().add(gladiatorArena.getTeamBlueArray().get(0).useSkill(1, gladiatorArena.getTeamRedArray().get(0)));
                 enableBlueSkills(false);
                 roundConclusion();
             }
@@ -247,7 +237,7 @@ public class DUEL_TEST {
         BlueSkill3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gladiatorArena.getLastEffects().add(blueTeam.get(0).useSkill(2, redTeam.get(0)));
+                gladiatorArena.getLastEffects().add(gladiatorArena.getTeamBlueArray().get(0).useSkill(2, gladiatorArena.getTeamRedArray().get(0)));
                 enableBlueSkills(false);
                 roundConclusion();
             }
@@ -255,7 +245,7 @@ public class DUEL_TEST {
         BlueSkill4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gladiatorArena.getLastEffects().add(blueTeam.get(0).useSkill(3, redTeam.get(0)));
+                gladiatorArena.getLastEffects().add(gladiatorArena.getTeamBlueArray().get(0).useSkill(3, gladiatorArena.getTeamRedArray().get(0)));
                 enableBlueSkills(false);
                 roundConclusion();
             }
@@ -264,8 +254,8 @@ public class DUEL_TEST {
         RedSkill1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gladiatorArena.getLastEffects().add(redTeam.get(0).useSkill(0, blueTeam.get(0)));
-                enableRedSkills(false);
+                gladiatorArena.getLastEffects().add(gladiatorArena.getTeamRedArray().get(0).useSkill(0, gladiatorArena.getTeamBlueArray().get(0)));
+
                 roundConclusion();
             }
         });
@@ -273,8 +263,8 @@ public class DUEL_TEST {
         RedSkill2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gladiatorArena.getLastEffects().add(redTeam.get(0).useSkill(1, blueTeam.get(0)));
-                enableRedSkills(false);
+                gladiatorArena.getLastEffects().add(gladiatorArena.getTeamRedArray().get(0).useSkill(1, gladiatorArena.getTeamBlueArray().get(0)));
+
                 roundConclusion();
             }
         });
@@ -282,8 +272,8 @@ public class DUEL_TEST {
         RedSkill3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gladiatorArena.getLastEffects().add(redTeam.get(0).useSkill(2, blueTeam.get(0)));
-                enableRedSkills(false);
+                gladiatorArena.getLastEffects().add(gladiatorArena.getTeamRedArray().get(0).useSkill(2, gladiatorArena.getTeamBlueArray().get(0)));
+
                 roundConclusion();
             }
         });
@@ -291,8 +281,8 @@ public class DUEL_TEST {
         RedSkill4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                gladiatorArena.getLastEffects().add(redTeam.get(0).useSkill(3, blueTeam.get(0)));
-                enableRedSkills(false);
+                gladiatorArena.getLastEffects().add(gladiatorArena.getTeamRedArray().get(0).useSkill(3, gladiatorArena.getTeamBlueArray().get(0)));
+
                 roundConclusion();
             }
         });

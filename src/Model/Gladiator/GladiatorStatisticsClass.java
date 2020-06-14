@@ -99,6 +99,8 @@ public final class GladiatorStatisticsClass {
             case Intelligence:
                 this.addIntelligence(statisticToAdd);
                 break;
+            case Defence:
+                this.addDefence(statisticToAdd);
             case None:
                 break;
         }
@@ -138,6 +140,8 @@ public final class GladiatorStatisticsClass {
             case Intelligence:
                 this.addIntelligenceModifier(modifierToAdd);
                 break;
+            case Defence:
+                this.addDefenceModifier(modifierToAdd);
             case None:
                 break;
         }

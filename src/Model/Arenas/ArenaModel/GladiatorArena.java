@@ -37,6 +37,12 @@ public class GladiatorArena {
 
     }
 
+    private void applyExpirienceOnBlue()
+    {
+        teamBlue.get(0).addExpirience(teamRed.get(0).generateExp());
+    }
+
+
     public boolean nextRound()
     {
         this.applyEffects();
@@ -44,6 +50,12 @@ public class GladiatorArena {
         roundCounter++;
         if(arenaRules.isDuelEnded()) {
             winnerTeam = arenaRules.whoWon();
+            if(winnerTeam == TeamEnum.Blue)
+            {
+                applyExpirienceOnBlue();
+            }
+            this.teamBlue.get(0).getGladiatorStatisticsClass().clearModifiers();
+            this.teamRed.get(0).getGladiatorStatisticsClass().clearModifiers();
             return true;
         }
 
@@ -53,6 +65,17 @@ public class GladiatorArena {
 
         return false;
     }
+
+    public ArrayList<Gladiator> getTeamBlueArray()
+    {
+        return this.teamBlue;
+    }
+
+    public ArrayList<Gladiator> getTeamRedArray()
+    {
+        return this.teamRed;
+    }
+
 
     private ArrayList<String> getTeamString(TeamEnum teamEnum)
     {

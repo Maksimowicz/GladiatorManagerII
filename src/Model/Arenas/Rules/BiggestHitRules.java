@@ -4,16 +4,16 @@ import Model.Arenas.ArenaModel.GladiatorArena;
 import Model.Arenas.Team.TeamEnum;
 import Model.Skills.Effect.SkillEffect;
 
-public class DamageRules implements ArenaRules {
+public class BiggestHitRules implements ArenaRules {
 
-    private int damageTeamRed;
-    private int damageTeamBlue;
+    private int biggestHitTeamRed;
+    private int biggestHitTeamBlue;
 
     private int turnCount;
 
     @Override
     public boolean isDuelEnded() {
-        if(turnCount < 10)
+        if(turnCount < 4)
         {
             return false;
         }
@@ -22,17 +22,17 @@ public class DamageRules implements ArenaRules {
 
     @Override
     public TeamEnum whoWon() {
-        if(damageTeamRed == damageTeamBlue)
+        if(biggestHitTeamRed == biggestHitTeamBlue)
         {
             return TeamEnum.None;
         }
 
-        if(damageTeamRed < damageTeamBlue)
+        if(biggestHitTeamRed < biggestHitTeamBlue)
         {
             return TeamEnum.Blue;
         }
 
-        if(damageTeamRed > damageTeamBlue)
+        if(biggestHitTeamRed > biggestHitTeamBlue)
         {
             return TeamEnum.Red;
         }
@@ -48,13 +48,18 @@ public class DamageRules implements ArenaRules {
             case Blue:
                 for(SkillEffect skillEffect : gladiatorArena.getLastEffects())
                 {
-                    damageTeamBlue += skillEffect.getDamage();
+                    if(biggestHitTeamBlue < skillEffect.getDamage()) {
+                        biggestHitTeamBlue = skillEffect.getDamage();
+                    }
                 }
                 break;
             case Red:
                 for (SkillEffect skillEffect : gladiatorArena.getLastEffects())
                 {
-                    damageTeamRed += skillEffect.getDamage();
+                    if(biggestHitTeamRed < skillEffect.getDamage()) {
+                        biggestHitTeamRed = skillEffect.getDamage();
+                    }
+
                 }
         }
 

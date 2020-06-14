@@ -80,6 +80,10 @@ public class PlayerContext {
         while(gladiatorsTeam.remove(null));
     }
 
+    public ArrayList<Gladiator> getGladiatorsTeam()
+    {
+        return this.gladiatorsTeam;
+    }
 
 
 

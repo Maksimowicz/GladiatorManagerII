@@ -1,49 +1,34 @@
 package Model.Skills.Arcane;
 
-import Model.Classes.GladiatorClass;
-import Model.Classes.Mages.Curser;
 import Model.Gladiator.Gladiator;
 import Model.Gladiator.GladiatorStatistic;
-import Model.Races.Race;
 import Model.Skills.Skill;
 
-public class SiphonLife extends ArcaneSkill{
-
-    public SiphonLife(Gladiator owner)
+public class MindWreck extends ArcaneSkill{
+    public MindWreck(Gladiator owner)
     {
         super(owner, GladiatorStatistic.Intelligence);
-    }
-
-    @Override
-    public boolean canBeLearned(GladiatorClass gladiatorClass, Race race)
-    {
-        if(gladiatorClass instanceof Curser)
-        {
-            return true;
-        }
-
-        return false;
     }
 
 
     @Override
     public String getName() {
-        return "Siphon life";
+        return "Mind wreck";
     }
 
     @Override
     public String getDescription() {
-        return "Deal damage to target and heal yourself for amount dealt";
+        return "Hit your enemy based on intelligence";
     }
 
     @Override
     public int getSkillDamage() {
-        return 5 + 2*owner.getGladiatorStatisticsClass().getStatistic(statisticMultiper);
+        return 10 + 2*owner.getGladiatorStatisticsClass().getStatistic(statisticMultiper);
     }
 
     @Override
     public int getSkillHeal() {
-        return getSkillDamage();
+        return 0;
     }
 
     @Override
@@ -63,17 +48,13 @@ public class SiphonLife extends ArcaneSkill{
 
     @Override
     public Skill getNewInstance() {
-        return new SiphonLife(null);
+        return new MindWreck(null);
     }
 
     @Override
     public int getCost() {
-        return 600;
+        return 1000;
     }
 
-    @Override
-    public String getWhoCanLearn()
-    {
-        return "Curser";
-    }
+
 }

@@ -131,6 +131,7 @@ public class GYMNASION_FORM {
 
         initializeColumns();
         initializeData();
+        //addCloseListener();
 
         GoldText.setText(Integer.toString(playerContext.getGold()));
 
@@ -143,7 +144,7 @@ public class GYMNASION_FORM {
                 new ListSelectionListener() {
                     @Override
                     public void valueChanged(ListSelectionEvent e) {
-
+                        LearnSkill.setEnabled(true);
                         selectedSkill = SkillTable.getSelectedRow();
 
                     }

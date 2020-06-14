@@ -6,11 +6,10 @@ import Model.Gladiator.GladiatorDummy.RandomGladiatorDummyGenerator;
 
 import java.util.ArrayList;
 
-//TODO: ADD GLADIATOR FACTORY
+
 public class Tavern {
 
     RandomGladiatorDummyGenerator randomGladiatorDummyGenerator;
-    //ArrayList<Gladiator> gladiatorsInTavern;
 
     ArrayList<GladiatorDummy> gladiatorsInTavern;
     public Tavern()
@@ -38,7 +37,7 @@ public class Tavern {
 
     public Gladiator buyGladiator(int gladiatorIndex)
     {
-        Gladiator gladiatorBought = gladiatorsInTavern.get(gladiatorIndex).convertIntoGladiator();
+        Gladiator gladiatorBought = gladiatorsInTavern.get(gladiatorIndex).convertIntoGladiator(false);
         gladiatorsInTavern.set(gladiatorIndex, null);
 
         return gladiatorBought;

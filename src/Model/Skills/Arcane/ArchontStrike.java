@@ -1,15 +1,14 @@
 package Model.Skills.Arcane;
 
 import Model.Classes.GladiatorClass;
-import Model.Classes.Mages.Curser;
+import Model.Classes.Mages.Elementalist;
 import Model.Gladiator.Gladiator;
 import Model.Gladiator.GladiatorStatistic;
 import Model.Races.Race;
 import Model.Skills.Skill;
 
-public class SiphonLife extends ArcaneSkill{
-
-    public SiphonLife(Gladiator owner)
+public class ArchontStrike extends ArcaneSkill {
+    public ArchontStrike(Gladiator owner)
     {
         super(owner, GladiatorStatistic.Intelligence);
     }
@@ -17,7 +16,7 @@ public class SiphonLife extends ArcaneSkill{
     @Override
     public boolean canBeLearned(GladiatorClass gladiatorClass, Race race)
     {
-        if(gladiatorClass instanceof Curser)
+        if(gladiatorClass instanceof Elementalist)
         {
             return true;
         }
@@ -28,32 +27,32 @@ public class SiphonLife extends ArcaneSkill{
 
     @Override
     public String getName() {
-        return "Siphon life";
+        return "Archont strike";
     }
 
     @Override
     public String getDescription() {
-        return "Deal damage to target and heal yourself for amount dealt";
+        return "Incrase your intelligence and hit enemy";
     }
 
     @Override
     public int getSkillDamage() {
-        return 5 + 2*owner.getGladiatorStatisticsClass().getStatistic(statisticMultiper);
+        return 10 + 2*owner.getGladiatorStatisticsClass().getStatistic(statisticMultiper);
     }
 
     @Override
     public int getSkillHeal() {
-        return getSkillDamage();
-    }
-
-    @Override
-    public int getStatisticBoost() {
         return 0;
     }
 
     @Override
+    public int getStatisticBoost() {
+        return 20;
+    }
+
+    @Override
     public GladiatorStatistic getBoostedStatistics() {
-        return GladiatorStatistic.None;
+        return GladiatorStatistic.Intelligence;
     }
 
     @Override
@@ -63,17 +62,17 @@ public class SiphonLife extends ArcaneSkill{
 
     @Override
     public Skill getNewInstance() {
-        return new SiphonLife(null);
+        return new ArchontStrike(null);
     }
 
     @Override
     public int getCost() {
-        return 600;
+        return 1000;
     }
 
     @Override
     public String getWhoCanLearn()
     {
-        return "Curser";
+        return "Elementalist";
     }
 }

@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="GladiatorManager:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/GladiatorManager_jar</output-path>
+    <root id="archive" name="GladiatorManager.jar">
+      <element id="module-output" name="GladiatorManager" />
+      <element id="extracted-dir" path="D:/Users/Hollow/IdeaProjects/GladiatorManager/lib/annotations-19.0.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

@@ -27,19 +27,10 @@ public class ArenaProxy {
     }
 
 
-    //TODO: Sprawdzić jak enumem można uzyskać metody
-    /*
-    public String getRules()
+    public ArenaQualifier getArenaQualifierClass()
     {
-        return arenaRulesEnum.getValue();
+        return this.arenaQualifier;
     }
-
-    public String getRulesDescription()
-    {
-        return arenaRulesEnum.getDescription();
-    }
-    */
-
 
     public String getRules()
     {
@@ -85,7 +76,7 @@ public class ArenaProxy {
         ArrayList<Gladiator> teamRed = new ArrayList<Gladiator>();
 
         teamBlue.add(gladiatorBlue);
-        teamRed.add(gladiatorDummy.convertIntoGladiator());
+        teamRed.add(gladiatorDummy.convertIntoGladiator(true));
 
         return new GladiatorArena(this.arenaQualifier, RulesFactory.constructArenaRules(arenaRulesEnum),teamBlue, teamRed );
     }

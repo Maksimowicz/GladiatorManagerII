@@ -32,7 +32,8 @@ public abstract class Skill {
 
     public SkillEffect useSkill(Gladiator target) //uses skill
     {
-        SkillEffect skillEffect = new SkillEffect(this.owner, this.getSkillDamage(), this.getSkillHeal(), this.getStatisticBoost(), this.getBoostedStatistics(), this.getIsSelfDamage(), this.getName(), target);
+        int damageAfterDefence = this.getSkillDamage() - (int)(target.getGladiatorStatisticsClass().getStatistic(GladiatorStatistic.Defence)/4);
+        SkillEffect skillEffect = new SkillEffect(this.owner, damageAfterDefence, this.getSkillHeal(), this.getStatisticBoost(), this.getBoostedStatistics(), this.getIsSelfDamage(), this.getName(), target);
         return skillEffect;
     }
 

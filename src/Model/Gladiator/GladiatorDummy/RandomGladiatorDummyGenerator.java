@@ -33,7 +33,7 @@ public class RandomGladiatorDummyGenerator {
 
     private int generateGladiatorLevel()
     {
-        return random.nextInt(10)+1;
+        return random.nextInt(30)+1;
 
     }
 

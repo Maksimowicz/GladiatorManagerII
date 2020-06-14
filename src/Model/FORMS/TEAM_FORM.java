@@ -381,7 +381,7 @@ public class TEAM_FORM {
     public void runSkillsForm(int indexOfGladiator)
     {
         SKILLS_FORM form = new SKILLS_FORM(playerContext, playerContext.getGladiator(indexOfGladiator), this);
-        JFrame frame = new JFrame("SKILL");
+        JFrame frame = new JFrame("SKILL " + playerContext.getGladiator(indexOfGladiator).getGladiatorName());
 
         frame.setContentPane(form.getMainFrame());
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -395,7 +395,7 @@ public class TEAM_FORM {
     public void runGymnasionForm(int indexOfGladiator)
     {
         GYMNASION_FORM form = new GYMNASION_FORM(playerContext, playerContext.getGladiator(indexOfGladiator), this);
-        JFrame frame = new JFrame("GYMNASION");
+        JFrame frame = new JFrame("GYMNASION " + playerContext.getGladiator(indexOfGladiator).getGladiatorName());
 
         frame.setContentPane(form.getMainFrame());
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -413,6 +413,7 @@ public class TEAM_FORM {
         this.parent = parent;
         getControlGroups();
         fillFields();
+        //addCloseListener();
 
         Gladiator_1_SList.addActionListener(new ActionListener() {
             @Override

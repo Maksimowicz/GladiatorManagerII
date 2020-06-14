@@ -50,7 +50,7 @@ public class TEST_FORM {
 
     public void setTextFields()
     {
-        LVL.setText(Integer.toString(testedGladiator.Level));
+        LVL.setText(Integer.toString( testedGladiator.getLevel()));
         HP.setText(Integer.toString(testedGladiator.getHealthPoints()));
         STR.setText(Integer.toString(testedGladiator.getGladiatorStatisticsClass().getStatistic(GladiatorStatistic.Strength)));
         AGI.setText(Integer.toString(testedGladiator.getGladiatorStatisticsClass().getStatistic(GladiatorStatistic.Agility)));

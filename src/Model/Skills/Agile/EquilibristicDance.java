@@ -1,23 +1,22 @@
-package Model.Skills.Arcane;
+package Model.Skills.Agile;
 
 import Model.Classes.GladiatorClass;
-import Model.Classes.Mages.Curser;
+import Model.Classes.Rogues.Equilibrist;
 import Model.Gladiator.Gladiator;
 import Model.Gladiator.GladiatorStatistic;
 import Model.Races.Race;
 import Model.Skills.Skill;
 
-public class SiphonLife extends ArcaneSkill{
-
-    public SiphonLife(Gladiator owner)
+public class EquilibristicDance extends AgileSkill{
+    public EquilibristicDance(Gladiator owner)
     {
-        super(owner, GladiatorStatistic.Intelligence);
+        super(owner, GladiatorStatistic.Agility);
     }
 
     @Override
     public boolean canBeLearned(GladiatorClass gladiatorClass, Race race)
     {
-        if(gladiatorClass instanceof Curser)
+        if(gladiatorClass instanceof Equilibrist)
         {
             return true;
         }
@@ -28,32 +27,34 @@ public class SiphonLife extends ArcaneSkill{
 
     @Override
     public String getName() {
-        return "Siphon life";
+        return "Equilibristic dance";
     }
 
     @Override
     public String getDescription() {
-        return "Deal damage to target and heal yourself for amount dealt";
+        return "Deal damage based on agi, str and get defence boost.";
     }
 
     @Override
     public int getSkillDamage() {
-        return 5 + 2*owner.getGladiatorStatisticsClass().getStatistic(statisticMultiper);
+        return (owner.getGladiatorStatisticsClass().getStatistic(statisticMultiper)) +
+                (owner.getGladiatorStatisticsClass().getStatistic(GladiatorStatistic.Strength))
+                ;
     }
 
     @Override
     public int getSkillHeal() {
-        return getSkillDamage();
-    }
-
-    @Override
-    public int getStatisticBoost() {
         return 0;
     }
 
     @Override
+    public int getStatisticBoost() {
+        return 10;
+    }
+
+    @Override
     public GladiatorStatistic getBoostedStatistics() {
-        return GladiatorStatistic.None;
+        return GladiatorStatistic.Defence;
     }
 
     @Override
@@ -63,17 +64,18 @@ public class SiphonLife extends ArcaneSkill{
 
     @Override
     public Skill getNewInstance() {
-        return new SiphonLife(null);
+        return new EquilibristicDance(null);
     }
 
     @Override
     public int getCost() {
-        return 600;
+        return 500;
     }
 
     @Override
     public String getWhoCanLearn()
     {
-        return "Curser";
+        return "Equilibrist";
     }
+
 }

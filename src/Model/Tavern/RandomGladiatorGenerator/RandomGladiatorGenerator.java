@@ -116,7 +116,7 @@ public class RandomGladiatorGenerator {
         int gladiatorLevel = random.nextInt(10) + 1;
 
 
-        //TODO: change to factory
+
         switch (gladiatorRarity)
         {
             case 0:

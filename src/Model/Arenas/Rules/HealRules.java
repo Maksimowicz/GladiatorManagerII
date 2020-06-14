@@ -4,16 +4,16 @@ import Model.Arenas.ArenaModel.GladiatorArena;
 import Model.Arenas.Team.TeamEnum;
 import Model.Skills.Effect.SkillEffect;
 
-public class DamageRules implements ArenaRules {
+public class HealRules implements ArenaRules {
 
-    private int damageTeamRed;
-    private int damageTeamBlue;
+    private int damageHealedTeamRed;
+    private int damageHealedTeamBlue;
 
     private int turnCount;
 
     @Override
     public boolean isDuelEnded() {
-        if(turnCount < 10)
+        if(turnCount < 6)
         {
             return false;
         }
@@ -22,17 +22,17 @@ public class DamageRules implements ArenaRules {
 
     @Override
     public TeamEnum whoWon() {
-        if(damageTeamRed == damageTeamBlue)
+        if(damageHealedTeamRed == damageHealedTeamBlue)
         {
             return TeamEnum.None;
         }
 
-        if(damageTeamRed < damageTeamBlue)
+        if(damageHealedTeamRed < damageHealedTeamBlue)
         {
             return TeamEnum.Blue;
         }
 
-        if(damageTeamRed > damageTeamBlue)
+        if(damageHealedTeamRed > damageHealedTeamBlue)
         {
             return TeamEnum.Red;
         }
@@ -48,13 +48,13 @@ public class DamageRules implements ArenaRules {
             case Blue:
                 for(SkillEffect skillEffect : gladiatorArena.getLastEffects())
                 {
-                    damageTeamBlue += skillEffect.getDamage();
+                    damageHealedTeamBlue += skillEffect.getHeal();
                 }
                 break;
             case Red:
                 for (SkillEffect skillEffect : gladiatorArena.getLastEffects())
                 {
-                    damageTeamRed += skillEffect.getDamage();
+                    damageHealedTeamRed += skillEffect.getHeal();
                 }
         }
 
